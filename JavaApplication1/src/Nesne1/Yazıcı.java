@@ -1,0 +1,25 @@
+package Nesne1;
+
+public class Yazýcý extends Category{
+	
+	private boolean çiftTaraflýYazma;
+	private int dakikadakiSayfa;
+	private boolean fotokopi;
+	
+	public Yazýcý(int pId, String brand, String model, double pPrice , String categoryName, boolean çiftTaraflýYazma, int dakikadakiSayfa, boolean fotokopi )
+	{
+		super(pId, brand, model, pPrice, categoryName);
+		this.çiftTaraflýYazma=çiftTaraflýYazma;
+		this.dakikadakiSayfa=dakikadakiSayfa;
+		this.fotokopi=fotokopi;
+		
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + " --Yazýcý [Çift taraflý yazdýrma=" + çiftTaraflýYazma + ", Dakikadaki Sayfa Sayýsý=" + dakikadakiSayfa + ",fotokopi="+ fotokopi+ "]";
+	}
+
+
+
+}

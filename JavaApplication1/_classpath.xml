@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="twitter4j-lib/twitter4j-async-4.0.4.jar"/>
+	<classpathentry kind="lib" path="twitter4j-lib/twitter4j-core-4.0.4.jar"/>
+	<classpathentry kind="lib" path="twitter4j-lib/twitter4j-examples-4.0.4.jar"/>
+	<classpathentry kind="lib" path="twitter4j-lib/twitter4j-media-support-4.0.4.jar"/>
+	<classpathentry kind="lib" path="twitter4j-lib/twitter4j-stream-4.0.4.jar"/>
+	<classpathentry kind="lib" path="Mongo-DB/mongodb-driver-3.5.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="Mongo-DB/mongodb-driver-3.5.0-sources.jar"/>
+	<classpathentry kind="lib" path="Mongo-DB/mongodb-driver-3.5.0.jar"/>
+	<classpathentry kind="lib" path="Mongo-DB/mongo-java-driver-3.5.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="Mongo-DB/mongo-java-driver-3.5.0-sources.jar"/>
+	<classpathentry kind="lib" path="Mongo-DB/mongo-java-driver-3.5.0.jar"/>
+	<classpathentry kind="lib" path="redis/jedis-2.9.0.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
