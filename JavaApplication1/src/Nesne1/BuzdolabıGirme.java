@@ -11,6 +11,10 @@ import org.bson.Document;
 
 import com.mongodb.client.MongoCollection;
 
+import Nesne1.FabrikaDeseni.BuzdolabýOluþtur;
+import Nesne1.FabrikaDeseni.ÜrünOluþturucu;
+import Nesne1.FabrikaDeseni.ÜrünSeçici;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -111,9 +115,13 @@ public class BuzdolabýGirme extends JFrame {
 				
 				
 				
-			Buzdolabý yeniBuzdolabý = new Buzdolabý(AnaMenu.toplamÜrünSayýsý,textField.getText(),textField_1.getText(),
+		/*	Buzdolabý yeniBuzdolabý = new Buzdolabý(AnaMenu.toplamÜrünSayýsý,textField.getText(),textField_1.getText(),
 					Double.parseDouble(textField_4.getText()),
-					"Beyaz Eþya",Integer.parseInt(textField_2.getText()),textField_3.getText());
+					"Beyaz Eþya",Integer.parseInt(textField_2.getText()),textField_3.getText());*/
+				ÜrünSeçici seç = new ÜrünSeçici();
+				ÜrünOluþturucu oluþturucu = seç.ürünSeç("Buzdolabý");
+				Buzdolabý yeniBuzdolabý=(Buzdolabý)oluþturucu.ürünüOluþtur(AnaMenu.toplamÜrünSayýsý, textField.getText(), textField_1.getText(),Double.parseDouble(textField_4.getText()));
+				BuzdolabýOluþtur.ürünüDeðiþtir(yeniBuzdolabý, "Beyaz Eþya", Integer.parseInt(textField_2.getText()), textField_3.getText());
 			boolean var=false;
 
 			Buzdolabý kayýtlý;
