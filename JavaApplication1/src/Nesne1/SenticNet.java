@@ -13,6 +13,14 @@ public class SenticNet {
 	
 	private static HashMap<String, Double> senticNet = new HashMap<String, Double>();
 	
+	
+	
+	
+	///Singleton Deseni Kullanýmý için
+	private static SenticNet TekSenticNet = new SenticNet();
+	
+	
+	
 	public SenticNet() ///senticnet4.txt dosyasýndan kutup deðerleri alýnarak HashMap'e atýlýyor.
 	{
 		Scanner sc2 = null;
@@ -47,7 +55,7 @@ public class SenticNet {
 	    sc2.close();
 	}
 	
-	public  double kutupDegerHesapla(ArrayList<String> tweetListesi)
+	public static  double kutupDegerHesapla(ArrayList<String> tweetListesi)
 	{
 		double deðer=0;
 		double toplamDeðerliKelimeSayýsý=0;

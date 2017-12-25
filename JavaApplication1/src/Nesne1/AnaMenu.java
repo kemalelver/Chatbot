@@ -150,8 +150,8 @@ public class AnaMenu extends JFrame {
 		        
 			    ArrayList<String> tweetListesi= new ArrayList<String>();
 			    tweetListesi.addAll(nicknames);///toplanýlan tweetler arraylist'e aktarýlýyor.
-			    SenticNet yeni= new SenticNet();
-			    ürün.setSentic(yeni.kutupDegerHesapla(tweetListesi));///toplanýlan tweetler kullanýlarak ürünün sentic deðeri bulunuyor
+			    
+			    ürün.setSentic(SenticNet.kutupDegerHesapla(tweetListesi));///toplanýlan tweetler kullanýlarak ürünün sentic deðeri bulunuyor
 			    System.out.println(ürün);
 			    
 			   jedis.close(); 
