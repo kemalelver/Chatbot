@@ -11,6 +11,9 @@ import org.bson.Document;
 
 import com.mongodb.client.MongoCollection;
 
+import Nesne1.FabrikaDeseni.ÜrünOluþturucu;
+import Nesne1.FabrikaDeseni.ÜrünSeçici;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -110,11 +113,21 @@ public class KalemGirme extends JFrame {
 				
 				
 				
-			VersatilKalem yeniVersatilKalem = new VersatilKalem(AnaMenu.toplamÜrünSayýsý,textField.getText(),textField_1.getText(),
-					Double.parseDouble(textField_4.getText()),
-					"Kýrtasiye",Double.parseDouble(textField_3.getText()),Integer.parseInt(textField_2.getText())==1);
+			///VersatilKalem yeniVersatilKalem = new VersatilKalem(AnaMenu.toplamÜrünSayýsý,textField.getText(),textField_1.getText(),
+				////	Double.parseDouble(textField_4.getText()),
+				///	"Kýrtasiye",Double.parseDouble(textField_3.getText()),Integer.parseInt(textField_2.getText())==1);
 			boolean var=false;
-
+			ÜrünSeçici seç = new ÜrünSeçici();
+			ÜrünOluþturucu oluþturucu = seç.ürünSeç("Kalem");
+			VersatilKalem yeniVersatilKalem =(VersatilKalem)oluþturucu.ürünüOluþtur();
+			yeniVersatilKalem.setCategoryName("Kýrtasiye");
+			yeniVersatilKalem.setKalemUcu(Double.parseDouble(textField_3.getText()));
+			yeniVersatilKalem.setpBrand(textField.getText());
+			yeniVersatilKalem.setpId(AnaMenu.toplamÜrünSayýsý);
+			yeniVersatilKalem.setpModel(textField_1.getText());
+			yeniVersatilKalem.setpPrice(Double.parseDouble(textField_4.getText()));
+			yeniVersatilKalem.setUcuIcýneGider(Integer.parseInt(textField_2.getText())==1);
+			
 			VersatilKalem kayýtlý;
 			for(int i=0;i<AnaMenu.versatilKalemListesi.size();i++)
 			{

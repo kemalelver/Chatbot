@@ -11,6 +11,9 @@ import org.bson.Document;
 
 import com.mongodb.client.MongoCollection;
 
+import Nesne1.FabrikaDeseni.ÜrünOluþturucu;
+import Nesne1.FabrikaDeseni.ÜrünSeçici;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -112,11 +115,26 @@ public class YazýcýGirme extends JFrame {
 				
 				
 				
-			Yazýcý yeniYazýcý = new Yazýcý(AnaMenu.toplamÜrünSayýsý,textField.getText(),textField_1.getText(),
-					Double.parseDouble(textField_5.getText()),
-					"Kýrtasiye",Integer.parseInt(textField_2.getText())==1,Integer.parseInt(textField_3.getText()),Integer.parseInt(textField_4.getText())==1);
+			///Yazýcý yeniYazýcý = new Yazýcý(AnaMenu.toplamÜrünSayýsý,textField.getText(),textField_1.getText(),
+			///		Double.parseDouble(textField_5.getText()),
+			///		"Kýrtasiye",Integer.parseInt(textField_2.getText())==1,Integer.parseInt(textField_3.getText()),Integer.parseInt(textField_4.getText())==1);
 			boolean var=false;
 
+			
+			ÜrünSeçici seç = new ÜrünSeçici();
+			ÜrünOluþturucu oluþturucu = seç.ürünSeç("Yazýcý");
+			Yazýcý yeniYazýcý= (Yazýcý)oluþturucu.ürünüOluþtur();
+			yeniYazýcý.setCategoryName("Kýrtasiye");
+			yeniYazýcý.setDakikadakiSayfa(Integer.parseInt(textField_3.getText()));
+			yeniYazýcý.setFotokopi(Integer.parseInt(textField_4.getText())==1);
+			yeniYazýcý.setpBrand(textField.getText());
+			yeniYazýcý.setpId(AnaMenu.toplamÜrünSayýsý);
+			yeniYazýcý.setpModel(textField_1.getText());
+			yeniYazýcý.setpPrice(Double.parseDouble(textField_5.getText()));
+			yeniYazýcý.setÇiftTaraflýYazma(Integer.parseInt(textField_2.getText())==1);
+			
+			
+			
 			Yazýcý kayýtlý;
 			for(int i=0;i<AnaMenu.yazýcýListesi.size();i++)
 			{

@@ -6,16 +6,11 @@ import Nesne1.Product;
 public class BuzdolabıOluştur implements ÜrünOluşturucu{
 	
 	@Override
-	public Product ürünüOluştur(int pId, String pBrand, String pModel,double pPrice)
+	public Product ürünüOluştur()
 	{
-		return new Product(pId,pBrand,pModel,pPrice);
+		return new Buzdolabı();
 	}
 
-	static public void ürünüDeğiştir( Buzdolabı yeni,String categoryName, int içHacimLitresi, String verimlilik)
-	{
-		yeni.setCategoryName(categoryName);
-		yeni.setIçHacimLitresi(içHacimLitresi);
-		yeni.setVerimlilik(verimlilik);
-	}
+	
 
 }

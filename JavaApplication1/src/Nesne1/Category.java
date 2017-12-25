@@ -10,6 +10,10 @@ public class Category extends Product{
 		this.categoryName=categoryName;
 	}
 
+	public Category() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getCategoryName() {
 		return categoryName;
 	}

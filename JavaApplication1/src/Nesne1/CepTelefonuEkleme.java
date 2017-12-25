@@ -11,6 +11,9 @@ import org.bson.Document;
 
 import com.mongodb.client.MongoCollection;
 
+import Nesne1.FabrikaDeseni.ÜrünOluþturucu;
+import Nesne1.FabrikaDeseni.ÜrünSeçici;
+
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -114,9 +117,21 @@ public class CepTelefonuEkleme extends JFrame {
 				
 				
 				
-			CellPhone yeniTelefon = new CellPhone(AnaMenu.toplamÜrünSayýsý,textField.getText(),textField_1.getText(),
-					Double.parseDouble(textField_4.getText()),
-					"Elektronik",Integer.parseInt(textField_2.getText()),textField_3.getText());
+			//CellPhone yeniTelefon = new CellPhone(AnaMenu.toplamÜrünSayýsý,textField.getText(),textField_1.getText(),
+			//		Double.parseDouble(textField_4.getText()),
+			//		"Elektronik",Integer.parseInt(textField_2.getText()),textField_3.getText());
+			
+			ÜrünSeçici seç = new ÜrünSeçici();
+			ÜrünOluþturucu oluþturucu = seç.ürünSeç("Telefon");
+			CellPhone yeniTelefon =(CellPhone) oluþturucu.ürünüOluþtur();
+			yeniTelefon.setCameraSize(Integer.parseInt(textField_2.getText()));
+			yeniTelefon.setCategoryName("Elektronik");
+			yeniTelefon.setpBrand(textField.getText());
+			yeniTelefon.setpId(AnaMenu.toplamÜrünSayýsý);
+			yeniTelefon.setpModel(textField_1.getText());
+			yeniTelefon.setpPrice(Double.parseDouble(textField_4.getText()));
+			yeniTelefon.setRamSize(textField_3.getText());
+			
 			
 			boolean var=false;
 

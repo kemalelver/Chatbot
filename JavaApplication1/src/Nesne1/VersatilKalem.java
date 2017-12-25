@@ -12,6 +12,11 @@ public class VersatilKalem extends Category {
 		
 	}
 
+	public VersatilKalem() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
+
 	public double getKalemUcu() {
 		return kalemUcu;
 	}

@@ -120,8 +120,14 @@ public class BuzdolabýGirme extends JFrame {
 					"Beyaz Eþya",Integer.parseInt(textField_2.getText()),textField_3.getText());*/
 				ÜrünSeçici seç = new ÜrünSeçici();
 				ÜrünOluþturucu oluþturucu = seç.ürünSeç("Buzdolabý");
-				Buzdolabý yeniBuzdolabý=(Buzdolabý)oluþturucu.ürünüOluþtur(AnaMenu.toplamÜrünSayýsý, textField.getText(), textField_1.getText(),Double.parseDouble(textField_4.getText()));
-				BuzdolabýOluþtur.ürünüDeðiþtir(yeniBuzdolabý, "Beyaz Eþya", Integer.parseInt(textField_2.getText()), textField_3.getText());
+				Buzdolabý yeniBuzdolabý=(Buzdolabý)oluþturucu.ürünüOluþtur();
+				yeniBuzdolabý.setCategoryName("Beyaz Eþya");
+				yeniBuzdolabý.setIçHacimLitresi(Integer.parseInt(textField_2.getText()));
+				yeniBuzdolabý.setpBrand(textField.getText());
+				yeniBuzdolabý.setpId(AnaMenu.toplamÜrünSayýsý);
+				yeniBuzdolabý.setpModel(textField_1.getText());
+				yeniBuzdolabý.setpPrice(Double.parseDouble(textField_4.getText()));
+				yeniBuzdolabý.setVerimlilik(textField_3.getText());
 			boolean var=false;
 
 			Buzdolabý kayýtlý;

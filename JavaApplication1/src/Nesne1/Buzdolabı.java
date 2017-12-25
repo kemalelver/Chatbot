@@ -13,6 +13,11 @@ public class Buzdolabı extends Category {
 	}
 
 
+	public Buzdolabı()
+	{
+		super();
+		
+	}
 	public int getIçHacimLitresi() {
 		return içHacimLitresi;
 	}

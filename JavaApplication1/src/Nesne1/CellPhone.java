@@ -11,6 +11,11 @@ public class CellPhone extends Category {
 		this.ramSize = ramSize;
 	}
 
+	public CellPhone() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
+
 	public int getCameraSize() {
 		return cameraSize;
 	}
