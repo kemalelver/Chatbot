@@ -18,6 +18,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoIterable;
 
+import Nesne1.FabrikaDeseni.ÜrünOluþturucu;
+import Nesne1.FabrikaDeseni.ÜrünSeçici;
 import Strategy.EnYuksegiAl;
 import Strategy.Hesaplayan;
 import Strategy.OrtalamaIleHesapla;
@@ -81,47 +83,97 @@ public class AnaMenu extends JFrame {
 			MongoCollection<Document> table = database.getCollection(coll.toString());///Database'deki her bir koleksiyonu tek tek alýyor
 			FindIterable<Document> aaa=table.find();/// her koleksiyon içindeki documentleri listeye alýyor
 			
+			 ÜrünSeçici seç = new ÜrünSeçici();
+			 ÜrünOluþturucu oluþturucu;
+			 final Hesaplayan hesap1=new Hesaplayan(new EnYuksegiAl());
+			    final Hesaplayan hesap2= new Hesaplayan(new OrtalamaIleHesapla());
+			    
+			    
 			for (Document current : aaa) {/// ürünleri documentteki koleksiyon adlarýna göre
 										/// ait olduklarý 
 				
 				switch(coll)
 				{
 					case "CepTelefonu":
-						 ürün= new CellPhone( current.getInteger("pid"),current.getString("Markasi"),current.getString("Modeli"),
-						Double.parseDouble(current.getString("Fiyati")),
-						current.getString("Kategorisi"),current.getInteger("MegaPikseli"),current.getString("Rami"));
-						cepTelefonuListesi.add((CellPhone)ürün);
-						cepTelefonuListesi2.add((CellPhone)ürün);
+						 ///ürün= new CellPhone( current.getInteger("pid"),current.getString("Markasi"),current.getString("Modeli"),
+						///Double.parseDouble(current.getString("Fiyati")),
+						///current.getString("Kategorisi"),current.getInteger("MegaPikseli"),current.getString("Rami"));
+						 
+						
+							 oluþturucu = seç.ürünSeç("Telefon");
+							CellPhone yeniTelefon =(CellPhone) oluþturucu.ürünüOluþtur();
+							yeniTelefon.setCameraSize(current.getInteger("MegaPikseli"));
+							yeniTelefon.setCategoryName(current.getString("Kategorisi"));
+							yeniTelefon.setpBrand(current.getString("Markasi"));
+							yeniTelefon.setpId(current.getInteger("pid"));
+							yeniTelefon.setpModel(current.getString("Modeli"));
+							yeniTelefon.setpPrice(Double.parseDouble(current.getString("Fiyati")));
+							yeniTelefon.setRamSize(current.getString("Rami"));
+							ürün=yeniTelefon;
+						cepTelefonuListesi.add(yeniTelefon);
+						cepTelefonuListesi2.add(yeniTelefon);
 						
 						break;
 						
 					case "VersatilKalem":
-						ürün= new VersatilKalem(current.getInteger("pid"),current.getString("Markasi"),current.getString("Modeli"),
-							Double.parseDouble(current.getString("Fiyati")),
-								current.getString("Kategorisi"),
-								current.getDouble("Kalem ucu çapý:"),
-								current.getBoolean("Ucu içine giriyor mu:"));
-						versatilKalemListesi.add((VersatilKalem)ürün);
-						versatilKalemListesi2.add((VersatilKalem)ürün);
+						///ürün= new VersatilKalem(current.getInteger("pid"),current.getString("Markasi"),current.getString("Modeli"),
+						////	Double.parseDouble(current.getString("Fiyati")),
+						///		current.getString("Kategorisi"),
+						///		current.getDouble("Kalem ucu çapý:"),
+						///		current.getBoolean("Ucu içine giriyor mu:"));
+						 oluþturucu = seç.ürünSeç("Kalem");
+						VersatilKalem yeniVersatilKalem =(VersatilKalem)oluþturucu.ürünüOluþtur();
+						yeniVersatilKalem.setCategoryName(current.getString("Kategorisi"));
+						yeniVersatilKalem.setKalemUcu(current.getDouble("Kalem ucu çapý:"));
+						yeniVersatilKalem.setpBrand(current.getString("Markasi"));
+						yeniVersatilKalem.setpId(AnaMenu.toplamÜrünSayýsý);
+						yeniVersatilKalem.setpModel(current.getString("Modeli"));
+						yeniVersatilKalem.setpPrice(Double.parseDouble(current.getString("Fiyati")));
+						yeniVersatilKalem.setUcuIcýneGider(current.getBoolean("Ucu içine giriyor mu:"));
+						ürün=yeniVersatilKalem;
+						versatilKalemListesi.add(yeniVersatilKalem);
+						versatilKalemListesi2.add(yeniVersatilKalem);
 						break;
 						
 					case "Yazýcý":
-						ürün =new Yazýcý(current.getInteger("pid"),current.getString("Markasi"),current.getString("Modeli"),
-							Double.parseDouble(current.getString("Fiyati")),
-								current.getString("Kategorisi"),current.getBoolean("Çift Taraflý Yazdýrma")
-								,current.getInteger("Dakikadaki  Sayfa Sayýsý"),
-								current.getBoolean("Fotokopi çekmek"));
-						yazýcýListesi.add((Yazýcý)ürün);
-						yazýcýListesi2.add((Yazýcý)ürün);
+						////ürün =new Yazýcý(current.getInteger("pid"),current.getString("Markasi"),current.getString("Modeli"),
+						///	Double.parseDouble(current.getString("Fiyati")),
+						///		current.getString("Kategorisi"),current.getBoolean("Çift Taraflý Yazdýrma")
+						///		,current.getInteger("Dakikadaki  Sayfa Sayýsý"),
+						///		current.getBoolean("Fotokopi çekmek"));
+						oluþturucu = seç.ürünSeç("Yazýcý");
+						Yazýcý yeniYazýcý= (Yazýcý)oluþturucu.ürünüOluþtur();
+						yeniYazýcý.setCategoryName(current.getString("Kategorisi"));
+						yeniYazýcý.setDakikadakiSayfa(current.getInteger("Dakikadaki  Sayfa Sayýsý"));
+						yeniYazýcý.setFotokopi(current.getBoolean("Fotokopi çekmek"));
+						yeniYazýcý.setpBrand(current.getString("Markasi"));
+						yeniYazýcý.setpId(current.getInteger("pid"));
+						yeniYazýcý.setpModel(current.getString("Modeli"));
+						yeniYazýcý.setpPrice(Double.parseDouble(current.getString("Fiyati")));
+						yeniYazýcý.setÇiftTaraflýYazma(current.getBoolean("Çift Taraflý Yazdýrma"));
+						ürün=yeniYazýcý;
+						yazýcýListesi.add(yeniYazýcý);
+						yazýcýListesi2.add(yeniYazýcý);
 						break;
 					
 					case "Buzdolabý":
-							ürün =new Buzdolabý(current.getInteger("pid"),current.getString("Markasi"),current.getString("Modeli"),
-								Double.parseDouble(current.getString("Fiyati")),
-									current.getString("Kategorisi"),current.getInteger("Ýç Hacim Litresi")
-									,current.getString("Verimlilik Sýnýfý"));
-							buzdolabýListesi.add((Buzdolabý)ürün);
-							buzdolabýListesi2.add((Buzdolabý)ürün);
+							///ürün =new Buzdolabý(current.getInteger("pid"),current.getString("Markasi"),current.getString("Modeli"),
+							///	Double.parseDouble(current.getString("Fiyati")),
+							///		current.getString("Kategorisi"),current.getInteger("Ýç Hacim Litresi")
+							///		,current.getString("Verimlilik Sýnýfý"));
+							
+							oluþturucu = seç.ürünSeç("Buzdolabý");
+							Buzdolabý yeniBuzdolabý=(Buzdolabý)oluþturucu.ürünüOluþtur();
+							yeniBuzdolabý.setCategoryName(current.getString("Kategorisi"));
+							yeniBuzdolabý.setIçHacimLitresi(current.getInteger("Ýç Hacim Litresi"));
+							yeniBuzdolabý.setpBrand(current.getString("Markasi"));
+							yeniBuzdolabý.setpId(current.getInteger("pid"));
+							yeniBuzdolabý.setpModel(current.getString("Modeli"));
+							yeniBuzdolabý.setpPrice(Double.parseDouble(current.getString("Fiyati")));
+							yeniBuzdolabý.setVerimlilik(current.getString("Verimlilik Sýnýfý"));
+							ürün=yeniBuzdolabý;
+							buzdolabýListesi.add(yeniBuzdolabý);
+							buzdolabýListesi2.add(yeniBuzdolabý);
 							break;
 						
 					default:
@@ -162,13 +214,13 @@ public class AnaMenu extends JFrame {
 			    ArrayList<String> tweetListesi= new ArrayList<String>();
 			    tweetListesi.addAll(nicknames);///toplanýlan tweetler arraylist'e aktarýlýyor.
 			    
-			    final Hesaplayan hesap1=new Hesaplayan(new EnYuksegiAl());
-			    final Hesaplayan hesap2= new Hesaplayan(new OrtalamaIleHesapla());
-			    
+			   
+			   
 			    ürün.setSentic(hesap1.SenticHesapla(tweetListesi));///toplanýlan tweetler kullanýlarak ürünün sentic deðeri bulunuyor
 			    ürün.setSentic2(hesap2.SenticHesapla(tweetListesi));
-			    
 			    System.out.println(ürün);
+			    
+			    
 			    
 			   jedis.close(); 
 			    
