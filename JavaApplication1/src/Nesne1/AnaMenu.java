@@ -18,6 +18,9 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoIterable;
 
+import Strategy.EnYuksegiAl;
+import Strategy.Hesaplayan;
+import Strategy.OrtalamaIleHesapla;
 import redis.clients.jedis.Jedis;
 
 import javax.swing.JButton;
@@ -44,9 +47,13 @@ public class AnaMenu extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	public static List<CellPhone> cepTelefonuListesi= new ArrayList<CellPhone>();
+	public static List<CellPhone> cepTelefonuListesi2= new ArrayList<CellPhone>();
 	public static List<VersatilKalem> versatilKalemListesi = new ArrayList<VersatilKalem>();
+	public static List<VersatilKalem> versatilKalemListesi2 = new ArrayList<VersatilKalem>();
 	public static List<Yazýcý> yazýcýListesi = new ArrayList<Yazýcý>();
+	public static List<Yazýcý> yazýcýListesi2 = new ArrayList<Yazýcý>();
 	public static List<Buzdolabý> buzdolabýListesi = new ArrayList<Buzdolabý>();
+	public static List<Buzdolabý> buzdolabýListesi2 = new ArrayList<Buzdolabý>();
 	public static int toplamÜrünSayýsý =0;
 	
 	
@@ -84,6 +91,7 @@ public class AnaMenu extends JFrame {
 						Double.parseDouble(current.getString("Fiyati")),
 						current.getString("Kategorisi"),current.getInteger("MegaPikseli"),current.getString("Rami"));
 						cepTelefonuListesi.add((CellPhone)ürün);
+						cepTelefonuListesi2.add((CellPhone)ürün);
 						
 						break;
 						
@@ -94,6 +102,7 @@ public class AnaMenu extends JFrame {
 								current.getDouble("Kalem ucu çapý:"),
 								current.getBoolean("Ucu içine giriyor mu:"));
 						versatilKalemListesi.add((VersatilKalem)ürün);
+						versatilKalemListesi2.add((VersatilKalem)ürün);
 						break;
 						
 					case "Yazýcý":
@@ -103,6 +112,7 @@ public class AnaMenu extends JFrame {
 								,current.getInteger("Dakikadaki  Sayfa Sayýsý"),
 								current.getBoolean("Fotokopi çekmek"));
 						yazýcýListesi.add((Yazýcý)ürün);
+						yazýcýListesi2.add((Yazýcý)ürün);
 						break;
 					
 					case "Buzdolabý":
@@ -111,6 +121,7 @@ public class AnaMenu extends JFrame {
 									current.getString("Kategorisi"),current.getInteger("Ýç Hacim Litresi")
 									,current.getString("Verimlilik Sýnýfý"));
 							buzdolabýListesi.add((Buzdolabý)ürün);
+							buzdolabýListesi2.add((Buzdolabý)ürün);
 							break;
 						
 					default:
@@ -151,7 +162,12 @@ public class AnaMenu extends JFrame {
 			    ArrayList<String> tweetListesi= new ArrayList<String>();
 			    tweetListesi.addAll(nicknames);///toplanýlan tweetler arraylist'e aktarýlýyor.
 			    
-			    ürün.setSentic(SenticNet.kutupDegerHesapla(tweetListesi));///toplanýlan tweetler kullanýlarak ürünün sentic deðeri bulunuyor
+			    final Hesaplayan hesap1=new Hesaplayan(new EnYuksegiAl());
+			    final Hesaplayan hesap2= new Hesaplayan(new OrtalamaIleHesapla());
+			    
+			    ürün.setSentic(hesap1.SenticHesapla(tweetListesi));///toplanýlan tweetler kullanýlarak ürünün sentic deðeri bulunuyor
+			    ürün.setSentic2(hesap2.SenticHesapla(tweetListesi));
+			    
 			    System.out.println(ürün);
 			    
 			   jedis.close(); 
@@ -164,6 +180,10 @@ public class AnaMenu extends JFrame {
 		Collections.sort(versatilKalemListesi);
 		Collections.sort(yazýcýListesi);
 		Collections.sort(buzdolabýListesi);
+		Collections.sort(cepTelefonuListesi2,Product.Comparators.Sentic);
+		Collections.sort(versatilKalemListesi2,Product.Comparators.Sentic);
+		Collections.sort(yazýcýListesi2,Product.Comparators.Sentic);
+		Collections.sort(buzdolabýListesi2,Product.Comparators.Sentic);
 		
 		
 		

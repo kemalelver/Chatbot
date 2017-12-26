@@ -97,11 +97,25 @@ public class BotHandler extends JFrame {
 							   txtChat.append("You:" + uText + "\n");
 							   txtEnter.setText("x12x22");
 							   if(uText.equals("1"))
+							   {
 								   for (CellPhone cellP : AnaMenu.cepTelefonuListesi) {
 								    	txtChat.append("AI: " + cellP.toString() +"\n");
-								   }else if(uText.equals("2"))
+								   }
+								   
+								   txtChat.append("AI: Bir Diðer Sýralama....\n");
+								   for (CellPhone cellP : AnaMenu.cepTelefonuListesi2) {
+								    	txtChat.append("AI: " + cellP.toString() +"\n");
+								   }
+							   }else if(uText.equals("2"))
+							   {
 								   for (Yazýcý yazýcý : AnaMenu.yazýcýListesi) 
 									    txtChat.append("AI: " + yazýcý +"\n");
+								   
+								   txtChat.append("AI: Bir Diðer Sýralama....\n");
+								   
+								   for (Yazýcý yazýcý : AnaMenu.yazýcýListesi2) 
+									    txtChat.append("AI: " + yazýcý +"\n");
+							   }
 								   else txtChat.append("AI:" + "Yanlýþ seçim ana menüye geri dönüldü" + "\n");
 							
 							   
@@ -123,9 +137,16 @@ public class BotHandler extends JFrame {
 							   txtChat.append("You:" + uText + "\n");
 							   txtEnter.setText("x12x22");
 						    if(uText.equals("1"))
+						    {
 						      for (Buzdolabý buzdolabý : AnaMenu.buzdolabýListesi) {
 							      txtChat.append("AI: " + buzdolabý +"\n");
 						      }
+						      txtChat.append("AI: Bir Diðer Sýralama....\n");
+						      
+						      for (Buzdolabý buzdolabý : AnaMenu.buzdolabýListesi2) {
+							      txtChat.append("AI: " + buzdolabý +"\n");
+						      }
+						    }
 						    else txtChat.append("AI:" + "Yanlýþ seçim ana menüye geri dönüldü" + "\n");
 						    txtEnter.removeActionListener(this);
 						   }
@@ -146,9 +167,16 @@ public class BotHandler extends JFrame {
 							   txtChat.append("You:" + uText + "\n");
 							   txtEnter.setText("x12x22");
 							   if(uText.equals("1"))
+							   {
 								   for (VersatilKalem versatilKalem : AnaMenu.versatilKalemListesi) {
 								    	txtChat.append("AI: " + versatilKalem +"\n");
 								   }
+								   txtChat.append("AI: Bir Diðer Sýralama....\n");
+								   
+								   for (VersatilKalem versatilKalem : AnaMenu.versatilKalemListesi2) {
+								    	txtChat.append("AI: " + versatilKalem +"\n");
+								   }
+							   }
 							   else txtChat.append("AI:" + "Yanlýþ seçim ana menüye geri dönüldü" + "\n");
 						    txtEnter.removeActionListener(this);
 						   }

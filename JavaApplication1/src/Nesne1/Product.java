@@ -1,6 +1,7 @@
 package Nesne1;
 
 import java.text.DecimalFormat;
+import java.util.Comparator;
 
 public class Product implements Comparable<Product>{
 		private int pId;
@@ -8,6 +9,15 @@ public class Product implements Comparable<Product>{
 		private String pModel;
 		private double pPrice;
 		private double sentic;
+		private double sentic2;
+
+		public double getSentic2() {
+			return sentic2;
+		}
+
+		public void setSentic2(double sentic2) {
+			this.sentic2 = sentic2;
+		}
 
 		public double getSentic() {
 			return sentic;
@@ -38,6 +48,22 @@ public class Product implements Comparable<Product>{
 				return -1;  
 		}
 
+		public static class Comparators {
+			
+			public static Comparator<Product> Sentic = new Comparator<Product>() {
+	            
+	            public int compare(Product o1, Product o2) {
+	            	if(o1.sentic2==o2.sentic2)  
+	    				return 0;  
+	    				else if(o1.sentic2<o2.sentic2)  
+	    				return 1;  
+	    				else  
+	    				return -1;  
+	            }
+	        };
+		}
+		
+
 		public int getpId() {
 			return pId;
 		}
@@ -66,7 +92,9 @@ public class Product implements Comparable<Product>{
 		public String toString() {
 			DecimalFormat df = new DecimalFormat("#.00");
 			DecimalFormat df1 = new DecimalFormat("#0.000");
-			return  String.format("Product [pId=%-2s pBrand=%-16s pModel=%-14s", pId,pBrand,pModel)+ ", Price="+df.format(pPrice)+ " ,Sentic:"+ df1.format(sentic)+  "]";
+			return  String.format("Product [pId=%-2s pBrand=%-16s pModel=%-14s", pId,pBrand,pModel)+ ", Price="+df.format(pPrice)+ " ,Sentic:"+ df1.format(sentic)+ 
+					", Sentic2:"+df1.format(sentic2)
+					+ "]";
 		}
 
 		public double getpPrice() {
